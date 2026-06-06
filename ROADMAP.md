@@ -2,7 +2,8 @@
 **Dispositivos de Reabilitação - FUMEC - Entrega: 22/06/2026**
 
 > Produto físico + Relatório técnico + Apresentação formal
-> Caminho crítico: **Decisão de design → CAD → Impressão**
+> Caminho crítico: **Decisão de design -> CAD -> Envio para impressão externa**
+> ⚠ Impressão terceirizada: STLs saem até **13/06** - prazo antecipado em 1 dia vs. plano original.
 
 ---
 
@@ -25,13 +26,12 @@ gantt
     section CAD
     Importar e adaptar base      :crit, c1, 2026-06-09, 2d
     Articulação single-axis      :crit, c2, after c1, 2d
-    Protótipo da junta (teste)   :c3, after c2, 1d
-    Travar design                :milestone, crit, 2026-06-14, 0d
+    Travar design + exportar STL :milestone, crit, 2026-06-13, 0d
 
     section Fabricação
-    Slicing + parâmetros         :s1, 2026-06-14, 1d
-    Impressão das peças          :crit, p1, 2026-06-15, 3d
-    Buffer reimpressão           :p2, after p1, 1d
+    Envio para impressão externa :crit, p0, 2026-06-13, 1d
+    Impressão (terceirizado)     :p1, 2026-06-13, 3d
+    Retirada das peças           :p2, after p1, 1d
     Montagem                     :m1, 2026-06-19, 1d
 
     section Validação
@@ -56,14 +56,14 @@ gantt
   ├─ [ ] Leitura da matriz de decisão (refs/decisao_design_base.md)
   ├─ [ ] ◆ Seleção do design-base e registro no README.md
   │         └─ recomendação: Make3D Printables #293133 (score 4,2/5)
-  └─ [ ] Download dos arquivos STL + STEP/F3D → cad/ e refs/
+  └─ [ ] Download dos arquivos STL + STEP/F3D -> cad/ e refs/
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 2 · ENGENHARIA                                 07–09/06    ║
+║  FASE 2 · ENGENHARIA                                 07-09/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ↳ Corre em paralelo ao início do CAD
+  │  Corre em paralelo ao início do CAD
   │
-  ├─ [ ] Medição de B, H, L do keel no STL (Fusion / PrusaSlicer)
+  ├─ [ ] Medição de B, H, L do keel no STL (Fusion / Blender)
   ├─ [ ] Execução de testes/dimensionamento.py com dimensões reais
   │         ├─ tensão na seção crítica (carga 1030 N, FS 2,5)
   │         ├─ comparação PETG × PLA-CF
@@ -71,43 +71,40 @@ gantt
   └─ [ ] ◆ Confirmação de material: PETG (keel) · TPU 95A (batentes) · M8 aço (eixo)
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 3 · CAD                                        09–14/06    ║
+║  FASE 3 · CAD                                        09-13/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ Gargalo criativo - sem IA substituta
+  │  ⚠ Gargalo criativo - prazo real é 13/06 (envio externo)
   │
-  ├─ [ ] Importar STEP do design-base (Fusion 360 / FreeCAD)
+  ├─ [ ] Importar STEP do design-base (FreeCAD / Fusion 360)
   ├─ [ ] Adaptação do keel (espessura + geometria pelos resultados do script)
   ├─ [ ] Articulação single-axis (dorsi/plantarflexão)
   │         ├─ furo para eixo M8 (tolerância H7/h6)
-  │         ├─ batente dorsal TPU (10–15°)
-  │         └─ batente plantar TPU (15–20°)
+  │         ├─ batente dorsal TPU (10-15°)
+  │         └─ batente plantar TPU (15-20°)
   ├─ [ ] Adaptação do conector de pylon
-  ├─ [ ] ⚡ MINI-IMPRESSÃO: protótipo da junta isolada
-  │         └─ valida folga + ADM antes de imprimir a peça inteira
+  ├─ [ ] ⚡ MINI-IMPRESSÃO LOCAL: protótipo da junta isolada
+  │         └─ valida folga + ADM antes de enviar tudo
   ├─ [ ] Ajuste de tolerâncias pós mini-impressão
-  └─ [ ] ◆ TRAVAR DESIGN - 14/06 (não alterar depois)
+  ├─ [ ] ◆ TRAVAR DESIGN - 13/06 (não alterar depois)
+  └─ [ ] Exportar STLs por peça nomeados + slicing/ESPECIFICACOES_IMPRESSAO.md
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 4 · SLICING                                    14–15/06    ║
+║  FASE 4 · ENVIO PARA IMPRESSÃO EXTERNA               13/06       ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ 15/06 = início do estágio (08–14h) - janela curta
+  │  ⚠ Sem slicer necessário - entregar STL + especificações
   │
-  ├─ [ ] Orientação de impressão: keel deitado (carga no plano XY)
-  ├─ [ ] Parâmetros: infill ≥ 40% · paredes ≥ 3 · suportes mínimos
-  ├─ [ ] Separação de perfis por material (PETG × TPU)
-  ├─ [ ] Estimativa de tempo total + consumo de filamento
-  └─ [ ] Salvar perfil e .3mf → slicing/
+  ├─ [ ] Conferir todos os STLs (um por peça, sem erros de malha)
+  ├─ [ ] Enviar STLs + slicing/ESPECIFICACOES_IMPRESSAO.md
+  ├─ [ ] Confirmar prazo de entrega e retirada
+  └─ [ ] Reservar opção de impressora local para emergência
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 5 · IMPRESSÃO                                  15–18/06    ║
+║  FASE 5 · RETIRADA + INSPEÇÃO                        16-17/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ Maior risco de prazo - reservar buffer de reimpressão
   │
-  ├─ [ ] Impressão das peças estruturais (PETG)
-  ├─ [ ] Impressão dos batentes (TPU 95A)
   ├─ [ ] Inspeção visual + dimensional de cada peça
-  ├─ [ ] Reimpressão de falhas (buffer até 18/06)
-  └─ [ ] Registro fotográfico de cada peça → fotos/
+  ├─ [ ] Registro fotográfico das peças -> fotos/
+  └─ [ ] Solicitar reimpressão se necessário (buffer até 18/06)
 
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 6 · MONTAGEM                                   19/06       ║
@@ -116,20 +113,20 @@ gantt
   ├─ [ ] Montagem da articulação (eixo M8 + porca + bucha + batentes)
   ├─ [ ] Encaixe keel + pylon + pé
   ├─ [ ] Verificação de movimento livre e batentes
-  └─ [ ] Registro fotográfico da montagem → fotos/
+  └─ [ ] Registro fotográfico da montagem -> fotos/
 
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 7 · VALIDAÇÃO                                  20/06       ║
 ╚══════════════════════════════════════════════════════════════════╝
   │
   ├─ [ ] Teste de ADM
-  │         ├─ medir dorsiflexão real (alvo: 10–15°)
-  │         └─ medir plantarflexão real (alvo: 15–20°)
+  │         ├─ medir dorsiflexão real (alvo: 10-15°)
+  │         └─ medir plantarflexão real (alvo: 15-20°)
   ├─ [ ] Teste de carga
   │         ├─ aplicar carga conhecida (estático)
   │         └─ observar e registrar deformação / ausência de falha
-  ├─ [ ] Planilha de custo real → testes/custo.csv
-  └─ [ ] Registro em vídeo do ciclo de movimento → fotos/
+  ├─ [ ] Planilha de custo real -> testes/custo.csv
+  └─ [ ] Registro em vídeo do ciclo de movimento -> fotos/
 
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 8 · RELATÓRIO + SLIDES                         21/06       ║
@@ -162,7 +159,7 @@ gantt
 ## Dependências críticas
 
 ```
-Decisão design-base
+Decisão design-base (06/06)
        │
        ▼
   Download CAD ──────────────── Dimensionamento.py (paralelo)
@@ -171,17 +168,17 @@ Decisão design-base
   CAD completo ◄──────────── Material + parâmetros confirmados
        │
        ▼
-  ◆ TRAVAR DESIGN (14/06)
+  ◆ TRAVAR + EXPORTAR STLs (13/06) ◄─ prazo real antecipado
        │
        ▼
-  Slicing ──► Impressão ──► Montagem ──► Validação
-                                              │
-                                    ┌─────────┴──────────┐
-                                    ▼                    ▼
-                              Relatório               Slides
-                                    └─────────┬──────────┘
-                                              ▼
-                                      APRESENTAÇÃO 22/06
+  Envio impressão externa ──► Retirada ──► Montagem ──► Validação
+                                                │
+                                      ┌─────────┴──────────┐
+                                      ▼                    ▼
+                                Relatório               Slides
+                                      └─────────┬──────────┘
+                                                ▼
+                                        APRESENTAÇÃO 22/06
 ```
 
 ---
@@ -193,6 +190,6 @@ Decisão design-base
 | Fundação técnica (biomecânica, requisitos, dimensionamento) | ✅ Concluído | MINERVA - Missão 1 |
 | Decisão design-base | ⏳ Pendente | Matriz pronta - aguarda veredito |
 | Download CAD | ⏳ Pendente | Depende da decisão acima |
-| CAD | ⏳ Pendente | Caminho crítico |
-| Impressão | ⏳ Pendente | Impressora disponível ✅ |
+| CAD | ⏳ Pendente | Prazo real: 13/06 |
+| Envio impressão externa | ⏳ Pendente | Confirmar fornecedor |
 | Montagem / Validação / Relatório / Slides | ⏳ Pendente | - |

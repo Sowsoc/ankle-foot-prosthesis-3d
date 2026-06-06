@@ -8,11 +8,13 @@
 
 ## Candidatos avaliados
 
-| ID | Projeto | Link |
-|----|---------|------|
-| A | Make3D — Prosthetic Foot Prototype | [Printables #293133](https://www.printables.com/model/293133-prosthetic-foot-prototype) |
-| B | Appropedia — 3D printed prosthetic foot | [Appropedia](https://www.appropedia.org/3D_printed_prosthetic_foot) |
-| C | Colorado School of Mines — Capstone 3D Printed Foot | [Mines Capstone](https://www.mines.edu/capstoneseniordesign/project/3d-printed-prosthetic-foot/) |
+| ID | Projeto | Link | Status |
+|----|---------|------|--------|
+| A | Make3D - Prosthetic Foot Prototype | [Printables #293133](https://www.printables.com/model/293133-prosthetic-foot-prototype) | ✅ acessível |
+| B | Appropedia - 3D printed prosthetic foot | [Appropedia](https://www.appropedia.org/3D_printed_prosthetic_foot) | ⚠ página fora do ar - mantido como referência |
+| C | Colorado School of Mines - Capstone 3D Printed Foot | [Mines Capstone](https://www.mines.edu/capstoneseniordesign/project/3d-printed-prosthetic-foot/) | ✅ acessível |
+| D | Prosthetic Foot-Ankle for 3D Printing | [Printables #1032352](https://www.printables.com/model/1032352-prosthetic_foot-ankle-for-3d-printing) | ✅ acessível |
+| E | Make3D - Prosthetic Foot Simple | [Printables #317213](https://www.printables.com/model/317213-prosthetic-foot-simple) | ✅ acessível |
 
 ---
 
@@ -65,15 +67,38 @@ Pontuação: 1 (mínimo) a 5 (máximo) por critério. Score ponderado = Σ(peso 
 | Licença | 3 | Capstone acadêmico — geralmente CC ou domínio público para uso acadêmico; mas verificar antes de publicar remix |
 | **Score ponderado** | **3,2** | |
 
+### D — Printables #1032352 — Prosthetic Foot-Ankle for 3D Printing
+
+| Critério | Nota | Justificativa |
+|----------|------|---------------|
+| Imprimibilidade FDM | 4 | PETG + TPU 65A - alinhado com o projeto; sem material exótico; partes de reposição rápidas |
+| Robustez estrutural | 3 | Testado pelo autor; resistente a água/poeira; sem documentação de carga formal |
+| Remix / edição CAD | 3 | Disponível no Printables; formato não confirmado como STEP/editável - verificar antes de baixar |
+| Single-axis | 4 | Articulação de tornozelo funcional com movimento similar ao humano + flexão em calcanhar e dedos; mecanismo próximo do single-axis |
+| Licença | 4 | Printables CC BY-NC-SA por padrão; uso acadêmico OK |
+| **Score ponderado** | **3,65** | |
+
+### E — Printables #317213 — Make3D Prosthetic Foot Simple
+
+| Critério | Nota | Justificativa |
+|----------|------|---------------|
+| Imprimibilidade FDM | 3 | Junta interna em PC Blend (mais difícil que PETG); pé em Filaflex 98A - exige impressora dual ou troca de material |
+| Robustez estrutural | 3 | Mesma família do candidato A; junta com parafuso + arruelas; sem teste de carga documentado |
+| Remix / edição CAD | 5 | Mesma autora do A - Fusion 360, STEP exportável, comunidade Printables |
+| Single-axis | 4 | Junta interna com parafuso + arruelas conecta ao pylon; dedos flexíveis; próximo do single-axis |
+| Licença | 4 | Printables CC BY-NC-SA; uso acadêmico OK |
+| **Score ponderado** | **3,75** | |
+
 ---
 
 ## Resumo comparativo
 
-| | A — Make3D | B — Appropedia | C — Mines |
-|---|---|---|---|
-| Score ponderado | **4,2** | 2,85 | 3,2 |
-| Maior força | Match single-axis + CAD editável | Licença aberta | Rigor de engenharia |
-| Maior fraco | Sem teste de carga documentado | Mecanismo errado + validação mínima | Pediátrico; dobradiça ≠ eixo rígido |
+| | A - Make3D #293133 | B - Appropedia | C - Mines | D - #1032352 | E - Make3D Simple |
+|---|---|---|---|---|---|
+| Score ponderado | **4,2** | 2,85 | 3,2 | 3,65 | 3,75 |
+| Maior força | Match single-axis + CAD editável | Licença aberta | Rigor de engenharia | PETG+TPU nativo | CAD editável Fusion |
+| Maior fraco | Sem teste de carga | Página fora + mecanismo errado | Pediátrico; dobradiça | Formato CAD incerto | PC Blend na junta |
+| Acessível | ✅ | ⚠ fora do ar | ✅ | ✅ | ✅ |
 
 ---
 

@@ -1,23 +1,40 @@
-# Plano — 16 dias até 22/06
+# Plano - 16 dias até 22/06
 
-> Caminho crítico: **escolher base → CAD → impressão**. A impressão é o gargalo (horas/peça
-> + falha provável). Travar o design ANTES de o estágio começar (15/06). Buffer de reimpressão é obrigatório.
+> Caminho crítico: **escolher base -> CAD -> envio para impressão externa**.
+> Impressão terceirizada: STLs precisam sair até **13/06** (prazo de entrega 1-3 dias).
+> Travar o design antes do estágio começar (15/06) - mas o envio é antes disso.
 
 | Data | Entrega | Dep. | Risco |
 |---|---|---|---|
-| **07/06** | Baixar 1–3 candidatos open-source (Make3D/Appropedia) p/ `cad/`+`refs/`; **confirmar acesso à impressora** | — | ⛔ se sem impressora, replanejar tudo |
-| **09/06** | Requisitos finais + pesquisa biomecânica; escolher e travar o design-base | 07 | médio |
-| **10/06** | Antropometria padrão definida + material confirmado (PETG/TPU/M8) | 09 | baixo |
-| **14/06** | **CAD completo — TRAVAR design** (peças + junta + batentes) | 10 | alto (não destravar depois) |
-| **15/06** | Slicing + parâmetros (orientação, infill, suportes). ⚠️ início do estágio 08–14h | 14 | janela curta |
-| **18/06** | **Imprimir todas as peças** — com buffer p/ reimpressão de falha | 15 | alto (gargalo) |
-| **19/06** | Montagem da articulação (eixo, batentes, encaixe) | 18 | médio |
+| **06/06** | Decisão do design-base (ler matriz + bater martelo) + registrar no README | - | ⛔ trava tudo |
+| **07/06** | Download STL + STEP/F3D do design escolhido para `cad/` e `refs/` | 06 | baixo |
+| **09/06** | Medir B, H, L do keel no STL; rodar `dimensionamento.py` com valores reais; confirmar material | 07 | médio |
+| **13/06** | **CAD completo - TRAVAR e exportar STLs** por peça nomeados + doc de especificações de impressão | 09 | ⛔ crítico - envio no mesmo dia |
+| **13/06** | **Enviar para impressão externa** com especificações (material, infill, orientação, qtd) | 13 | alto - logística |
+| **15/06** | ⚠ Início do estágio (08-14h) | - | colisão de agenda |
+| **16–17/06** | Retirada das peças impressas (estimativa - confirmar com quem imprimir) | 13 | médio |
+| **18/06** | **Buffer**: reimpressão de emergência se necessário (ter opção de impressora local reserva) | 16 | alto |
+| **19/06** | Montagem da articulação (eixo M8 + bucha + batentes TPU) | 16 | médio |
 | **20/06** | Validação funcional: ADM + carga + fotos/vídeo | 19 | médio |
 | **21/06** | Relatório técnico fechado + slides + ensaio | 20 | alto (acúmulo) |
-| **22/06** | **APRESENTAÇÃO** | 21 | — |
+| **22/06** | **APRESENTAÇÃO** | 21 | - |
+
+### Especificações a entregar para quem imprimir
+
+Arquivo `slicing/ESPECIFICACOES_IMPRESSAO.md` a criar junto com os STLs:
+
+| Peça | Material | Infill | Paredes | Orientação | Qtd |
+|---|---|---|---|---|---|
+| keel (estrutura principal) | PETG | ≥ 40% | ≥ 3 | deitado (carga no plano XY) | 1 |
+| carcaça do tornozelo | PETG | ≥ 40% | ≥ 3 | a definir no CAD | 1 |
+| batente dorsal | TPU 95A | 30-40% | 3 | a definir | 1 |
+| batente plantar | TPU 95A | 30-40% | 3 | a definir | 1 |
+| conector de pylon | PETG | ≥ 50% | ≥ 4 | a definir | 1 |
+
+> Peças e quantidades a confirmar após CAD finalizado.
 
 ### Regras do plano
-- **Prototipar a junta isolada** (só o mecanismo single-axis) antes de imprimir a peça inteira — valida folga/batente gastando pouco filamento.
-- Se a impressão de uma peça grande for inviável no prazo, **dividir em sub-peças** encaixáveis.
-- Relatório não é a última coisa: ir preenchendo `RELATORIO.md` a cada etapa (fabricação documenta a si mesma com as fotos de `fotos/`).
-- Colisão conhecida: estágio inicia 15/06; prova de Informática Médica + Eng. Clínica em 25/06. A folga é mínima — qualquer atraso na impressão come o relatório.
+- **CAD trava em 13/06, não 14/06** - envio externo não espera.
+- **Ter opção de impressora local reserva** para emergência pós-retirada (peça com defeito).
+- Relatório alimentar em paralelo ao CAD - não deixar tudo pra 21/06.
+- Colisões de agenda: estágio 15/06 (08-14h) + prova Informática Médica / Eng. Clínica 25/06.
