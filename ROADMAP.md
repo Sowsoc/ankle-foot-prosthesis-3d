@@ -1,5 +1,5 @@
-# Roadmap — Prótese Funcional Pé-Tornozelo 3D
-**Dispositivos de Reabilitação · FUMEC · Entrega: 22/06/2026**
+# Roadmap - Prótese Funcional Pé-Tornozelo 3D
+**Dispositivos de Reabilitação - FUMEC - Entrega: 22/06/2026**
 
 > Produto físico + Relatório técnico + Apresentação formal
 > Caminho crítico: **Decisão de design → CAD → Impressão**
@@ -10,7 +10,7 @@
 
 ```mermaid
 gantt
-    title Prótese Pé-Tornozelo 3D — 06 a 22/06
+    title Prótese Pé-Tornozelo 3D - 06 a 22/06
     dateFormat  YYYY-MM-DD
     axisFormat  %d/%m
 
@@ -73,7 +73,7 @@ gantt
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 3 · CAD                                        09–14/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ Gargalo criativo — sem IA substituta
+  │  ⚠ Gargalo criativo - sem IA substituta
   │
   ├─ [ ] Importar STEP do design-base (Fusion 360 / FreeCAD)
   ├─ [ ] Adaptação do keel (espessura + geometria pelos resultados do script)
@@ -85,12 +85,12 @@ gantt
   ├─ [ ] ⚡ MINI-IMPRESSÃO: protótipo da junta isolada
   │         └─ valida folga + ADM antes de imprimir a peça inteira
   ├─ [ ] Ajuste de tolerâncias pós mini-impressão
-  └─ [ ] ◆ TRAVAR DESIGN — 14/06 (não alterar depois)
+  └─ [ ] ◆ TRAVAR DESIGN - 14/06 (não alterar depois)
 
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 4 · SLICING                                    14–15/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ 15/06 = início do estágio (08–14h) — janela curta
+  │  ⚠ 15/06 = início do estágio (08–14h) - janela curta
   │
   ├─ [ ] Orientação de impressão: keel deitado (carga no plano XY)
   ├─ [ ] Parâmetros: infill ≥ 40% · paredes ≥ 3 · suportes mínimos
@@ -101,7 +101,7 @@ gantt
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 5 · IMPRESSÃO                                  15–18/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ Maior risco de prazo — reservar buffer de reimpressão
+  │  ⚠ Maior risco de prazo - reservar buffer de reimpressão
   │
   ├─ [ ] Impressão das peças estruturais (PETG)
   ├─ [ ] Impressão dos batentes (TPU 95A)
@@ -136,9 +136,9 @@ gantt
 ╚══════════════════════════════════════════════════════════════════╝
   │
   ├─ [ ] Relatório técnico (RELATORIO.md)
-  │         ├─ seções 2, 3, 5 — já preenchidas pela Missão 1
-  │         ├─ seção 4 — concepção/CAD (redigir pelo grupo)
-  │         ├─ seções 6, 7, 8, 9 — análise dos dados de validação
+  │         ├─ seções 2, 3, 5 - já preenchidas pela Missão 1
+  │         ├─ seção 4 - concepção/CAD (redigir pelo grupo)
+  │         ├─ seções 6, 7, 8, 9 - análise dos dados de validação
   │         └─ abstract + referências ABNT
   ├─ [ ] Slides da apresentação
   │         ├─ problema + motivação
@@ -190,9 +190,9 @@ Decisão design-base
 
 | Fase | Status | Observação |
 |------|--------|------------|
-| Fundação técnica (biomecânica, requisitos, dimensionamento) | ✅ Concluído | MINERVA — Missão 1 |
-| Decisão design-base | ⏳ Pendente | Matriz pronta — aguarda veredito |
+| Fundação técnica (biomecânica, requisitos, dimensionamento) | ✅ Concluído | MINERVA - Missão 1 |
+| Decisão design-base | ⏳ Pendente | Matriz pronta - aguarda veredito |
 | Download CAD | ⏳ Pendente | Depende da decisão acima |
 | CAD | ⏳ Pendente | Caminho crítico |
 | Impressão | ⏳ Pendente | Impressora disponível ✅ |
-| Montagem / Validação / Relatório / Slides | ⏳ Pendente | — |
+| Montagem / Validação / Relatório / Slides | ⏳ Pendente | - |
