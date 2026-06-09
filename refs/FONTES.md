@@ -1,7 +1,11 @@
 # Fontes e referências
 
 ## Designs open-source (candidatos a remix)
-- [A] Make3D - Prosthetic Foot Prototype ✅ Principal: https://www.printables.com/model/293133-prosthetic-foot-prototype
+- [A] Make3D - Prosthetic Foot Prototype ✅ **TRAVADO**: https://www.printables.com/model/293133-prosthetic-foot-prototype
+  - Autor: Make3D Company Ltd. Descrição cita **Fusion 360**, mas **só publica malha (STL)** —
+    o `.f3d`/STEP nativo **NÃO está disponível** (verificado em 2026-06-09). → remix por
+    **edição de malha (Blender)**: escalar ×1,262 + Boolean p/ furo M8. Detalhe em
+    `cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md` (Missão 1.5).
 - [D] Prosthetic Foot-Ankle for 3D Printing ✅ Principal: https://www.printables.com/model/1032352-prosthetic_foot-ankle-for-3d-printing
 - [B] Appropedia - 3D printed prosthetic foot ⚠ Plano B (página instável): https://www.appropedia.org/3D_printed_prosthetic_foot
 
