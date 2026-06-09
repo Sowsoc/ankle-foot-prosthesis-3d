@@ -2,7 +2,7 @@
 
 **Disciplina:** Dispositivos de Reabilitação — Eng. Biomédica, FUMEC
 **Entrega:** 22/06/2026 — produto físico + relatório técnico + apresentação formal
-**Natureza:** trabalho dedicado e independente (só compartilha a disciplina com os demais)
+**Natureza:** trabalho dedicado e independente
 
 > ⚠️ Dispositivo de demonstração acadêmica. **Não é para uso clínico real.** Uma prótese
 > de pé-tornozelo é estrutural e crítica em segurança; nenhum protótipo FDM deste trabalho
