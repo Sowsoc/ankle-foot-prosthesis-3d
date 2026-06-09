@@ -56,6 +56,42 @@ adulto padrão (~70 kg, pé 26–27 cm), carga de projeto 1,5×BW ≈ 1030 N, fa
 
 ---
 
+## MISSÃO 1.5 — Levantamento da articulação + escala (rodar AGORA, antes do CAD)
+
+**Contexto:** design-base TRAVADO = **A, Make3D / Printables #293133**. STLs já no repo em
+`cad/A_make3d_293133/` (InnerFoot = keel; TopJoint = junta superior; RubberCube = batente;
+Insert; FootRubber = sola). Dimensionamento já re-rodado com geometria medida (B=43, H=37,
+L=55 → PETG t≈4,3 mm). Esta missão NÃO é o CAD (isso é do João) — é a medição que alimenta o CAD.
+
+**Entregáveis (medir na malha, não chutar; commitar+push ao final):**
+
+1. **Geometria da articulação single-axis** — medir nos STLs e documentar em
+   `cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md`:
+   - localização e diâmetro do furo/eixo nativo na junta (TopJoint × InnerFoot) — confirmar se já é ~M8 ou precisa rebaixar/abrir;
+   - dimensões do bolso/encaixe do batente (RubberCube) — base p/ trocar por TPU 95A;
+   - interface do conector de pylon (Insert) — diâmetro/altura, comparar com pirâmide 30 mm padrão;
+   - distância entre faces da junta (folga p/ bucha nylon no furo).
+   Usar parse direto da malha binária (numpy) ou trimesh; **não inventar cota**.
+
+2. **Análise de escala ×1,26 (pé ~21 → 26–27 cm)** — tabela peça-por-peça do que muda
+   ao escalar: comprimento do pé, seção do keel, diâmetro do furo (⚠ escalar a malha
+   escala o furo p/ ~10 mm → decidir se mantém M8 e re-fura, ou usa M10), bolso do batente,
+   massa/filamento estimados. Recomendar: escalar a malha inteira OU escalar só o casco e
+   manter ferragem M8. Salvar em `cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md` (mesma nota).
+
+3. **Caça ao CAD editável** — verificar se o F3D/STEP de #293133 existe no Printables
+   (o ZIP baixado só trouxe STL). Se sim, anotar link/instrução em `refs/FONTES.md`; se não,
+   registrar que o remix será por edição de malha (Blender) e qual o caminho mínimo.
+
+**Restrições:** cada cota com origem (qual STL, como medida). Marcar o que for estimativa.
+Régua da sabatina: defensável. Ao final: `git add` + `commit` + `push` no `biomed-lab`.
+
+**Prompt de disparo (colar na MINERVA):**
+> Leia `~/biomed-lab/protese-tornozelo/MISSAO_MINERVA.md` e execute a Missão 1.5 inteira,
+> ponta a ponta, commitando ao final.
+
+---
+
 ## MISSÃO 2 — Análise dos dados de validação (depois dos testes físicos)
 *(a detalhar quando houver dados de ADM e carga)*
 
