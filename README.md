@@ -4,10 +4,6 @@
 **Entrega:** 22/06/2026 — produto físico + relatório técnico + apresentação formal
 **Natureza:** trabalho dedicado e independente
 
-> ⚠️ Dispositivo de demonstração acadêmica. **Não é para uso clínico real.** Uma prótese
-> de pé-tornozelo é estrutural e crítica em segurança; nenhum protótipo FDM deste trabalho
-> deve receber carga corporal real sem validação mecânica e avaliação de protético certificado.
-
 ---
 
 ## Decisões de projeto (travadas em 06/06)
