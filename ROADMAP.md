@@ -50,43 +50,91 @@ gantt
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 1 · DECISÃO DE DESIGN                          06/06       ║
+║  FASE 1 · DECISÃO DE DESIGN                  ✅ CONCLUÍDA 08/06  ║
 ╚══════════════════════════════════════════════════════════════════╝
   │
-  ├─ [ ] Leitura da matriz de decisão (refs/decisao_design_base.md)
-  ├─ [ ] ◆ Seleção do design-base e registro no README.md
-  │         └─ recomendação: Make3D Printables #293133 (score 4,2/5)
-  └─ [ ] Download dos arquivos STL + STEP/F3D -> cad/ e refs/
+  ├─ [x] Leitura da matriz de decisão (refs/decisao_design_base.md)
+  ├─ [x] ◆ Seleção do design-base: A — Make3D #293133 (voto do grupo, 08/06)
+  └─ [x] Download dos STLs -> cad/A_make3d_293133/ (sem STEP - só malha)
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 2 · ENGENHARIA                                 07-09/06    ║
+║  FASE 2 · ENGENHARIA                         ✅ CONCLUÍDA 09/06  ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  Corre em paralelo ao início do CAD
+  │  (MINERVA Missão 1 + Missão 1.5)
   │
-  ├─ [ ] Medição de B, H, L do keel no STL (Fusion / Blender)
-  ├─ [ ] Execução de testes/dimensionamento.py com dimensões reais
-  │         ├─ tensão na seção crítica (carga 1030 N, FS 2,5)
-  │         ├─ comparação PETG × PLA-CF
-  │         └─ espessura de parede e infill mínimos
-  └─ [ ] ◆ Confirmação de material: PETG (keel) · TPU 95A (batentes) · M8 aço (eixo)
+  ├─ [x] Medição de B, H, L do keel no STL (parse numpy direto)
+  │         └─ seção crítica medida: B=43 H=37 L=55 mm (InnerFoot.stl)
+  ├─ [x] Execução de testes/dimensionamento.py com dimensões reais
+  │         ├─ PETG: t_parede ≥ 4,3 mm · FS 2,5 · σ_adm 9 MPa ✔
+  │         ├─ PLA-CF descartado (t=10 mm, anisotropia Z agravada)
+  │         └─ Elo fraco = furo no plástico (bearing) → bucha metálica obrigatória
+  ├─ [x] ◆ Material confirmado: PETG (keel) · TPU 95A (batentes) · M8 8.8 (eixo)
+  └─ [x] Levantamento da articulação (MINERVA 1.5 — cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md)
+           ├─ furo nativo do pino: Ø4,8 mm (≈M5) → re-furar Ø8,4 no CAD
+           ├─ bore TopJoint: Ø10,0 mm → casa exatamente com bucha nylon 10×8 (OD10/ID8)
+           ├─ batente RubberCube: envelope 22,85 × 19,04 × 28 mm → reproduzir em TPU 95A
+           ├─ Insert (pylon): interface custom retangular, NÃO é pirâmide ISO 30 mm
+           ├─ escala: pé nativo 210 mm → alvo 265 mm = fator ×1,262
+           └─ sem STEP/F3D oficial — remix via edição de malha (Blender)
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  FASE 3 · CAD                                        09-13/06    ║
+║  FASE 3 · CAD (BLENDER)                              09-13/06    ║
 ╚══════════════════════════════════════════════════════════════════╝
-  │  ⚠ Gargalo criativo - prazo real é 13/06 (envio externo)
+  │  ⚠ GARGALO — prazo real 13/06 (envio externo no mesmo dia)
+  │  Ferramenta: Blender (edição de malha). Referência completa:
+  │  cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md
   │
-  ├─ [ ] Importar STEP do design-base (FreeCAD / Fusion 360)
-  ├─ [ ] Adaptação do keel (espessura + geometria pelos resultados do script)
-  ├─ [ ] Articulação single-axis (dorsi/plantarflexão)
-  │         ├─ furo para eixo M8 (tolerância H7/h6)
-  │         ├─ batente dorsal TPU (10-15°)
-  │         └─ batente plantar TPU (15-20°)
-  ├─ [ ] Adaptação do conector de pylon
-  ├─ [ ] ⚡ MINI-IMPRESSÃO LOCAL: protótipo da junta isolada
-  │         └─ valida folga + ADM antes de enviar tudo
+  ├─ [ ] ⚠ ANTES de abrir o Blender — comprar ferragem (urgente):
+  │         ├─ bucha nylon 10×8 (OD 10 / ID 8) — 2 un.
+  │         ├─ parafuso M8 × 60 mm classe 8.8 — 1 un.
+  │         └─ porca M8 + 2× arruela M8
+  │
+  ├─ [ ] Decisão: pylon (responder antes de editar o Insert)
+  │         ├─ opção A (recomendada): manter Insert custom do design-base
+  │         │    → mais simples, suficiente para demonstração acadêmica
+  │         └─ opção B: substituir por pirâmide ISO 30 mm (4 furos)
+  │              → mais "clínico", mas depende de peça comprada ou re-modelar do zero
+  │
+  ├─ [ ] Blender — importar os 5 STLs de cad/A_make3d_293133/:
+  │         InnerFoot · TopJoint · FootRubber · RubberCube · Insert
+  │
+  ├─ [ ] Escalar o CASCO ×1,262 (não escalar a junta junto):
+  │         ├─ selecionar: FootRubber + InnerFoot (+ Insert se mantiver custom)
+  │         ├─ S → 1.262 → Enter (escala uniforme global)
+  │         └─ NÃO incluir TopJoint na seleção — bore Ø10 nativo deve ser mantido
+  │
+  ├─ [ ] Re-furar InnerFoot (M5 nativo → M8):
+  │         ├─ Add → Cylinder: Ø 8,4 mm, eixo Y, centro em X ≈ −6,2 (escale o X tbm)
+  │         ├─ Boolean Difference: InnerFoot − cilindro
+  │         └─ resultado: furo Ø8,4 coaxial ao bore Ø10 do TopJoint
+  │
+  ├─ [ ] TopJoint — ajustar encaixe ao casco escalado:
+  │         ├─ bore Ø10 intacto (assento da bucha nylon 10×8 — não alterar)
+  │         └─ encaixe lateral/inferior ao InnerFoot escalado: ajustar malha se necessário
+  │
+  ├─ [ ] Batentes dorsal e plantar (2 peças separadas em TPU 95A):
+  │         ├─ envelope base: 22,85 × 19,04 × 28 mm (RubberCube original)
+  │         ├─ posicionar anterior (batente dorsal, limita dorsiflexão 10-15°)
+  │         ├─ posicionar posterior (batente plantar, limita plantarflexão 15-20°)
+  │         └─ exportar como STLs separados (material diferente no slicer)
+  │
+  ├─ [ ] ⚡ MINI-IMPRESSÃO LOCAL — validar a junta antes de enviar tudo:
+  │         ├─ exportar só InnerFoot + TopJoint editados
+  │         ├─ imprimir em PETG (parâmetros normais, não precisa de FS aqui)
+  │         ├─ montar com M8 + bucha 10×8 + anilhas e testar:
+  │         │    □ o M8 passa limpo pelo Ø8,4?
+  │         │    □ a bucha 10×8 assenta no bore Ø10 sem folga excessiva?
+  │         │    □ a junta gira livre, sem travar?
+  │         └─ se não: ajustar Ø (FDM real ≠ nominal; esperar +0,1–0,2 mm de folga)
+  │
   ├─ [ ] Ajuste de tolerâncias pós mini-impressão
-  ├─ [ ] ◆ TRAVAR DESIGN - 13/06 (não alterar depois)
-  └─ [ ] Exportar STLs por peça nomeados + slicing/ESPECIFICACOES_IMPRESSAO.md
+  │
+  ├─ [ ] ◆ TRAVAR DESIGN — 13/06 (não alterar depois do envio)
+  │
+  └─ [ ] Exportar STLs finais por peça, nomeados:
+           keel_petg.stl · tornozelo_superior_petg.stl · batente_dorsal_tpu.stl
+           batente_plantar_tpu.stl · sola_petg.stl · conector_pylon_petg.stl
+           + criar slicing/ESPECIFICACOES_IMPRESSAO.md
 
 ╔══════════════════════════════════════════════════════════════════╗
 ║  FASE 4 · ENVIO PARA IMPRESSÃO EXTERNA               13/06       ║
@@ -187,9 +235,15 @@ Decisão design-base (06/06)
 
 | Fase | Status | Observação |
 |------|--------|------------|
-| Fundação técnica (biomecânica, requisitos, dimensionamento) | ✅ Concluído | MINERVA - Missão 1 |
-| Decisão design-base | ✅ Concluído | **A - Make3D #293133** (voto do grupo, 08/06) |
-| Download CAD | ✅ Concluído | STLs em `cad/A_make3d_293133/`; dimensionamento re-rodado com geometria medida |
-| CAD | ⏳ Pendente | Prazo real: 13/06. ⚠ pacote de A só tem STL (sem STEP/F3D) - remix por edição de malha |
-| Envio impressão externa | ⏳ Pendente | Confirmar fornecedor |
-| Montagem / Validação / Relatório / Slides | ⏳ Pendente | - |
+| Fundação técnica (biomecânica, requisitos, dimensionamento) | ✅ | MINERVA Missão 1 |
+| Levantamento da articulação + escala | ✅ | MINERVA Missão 1.5 — ver `cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md` |
+| Decisão design-base | ✅ | **A — Make3D #293133** (voto do grupo, 08/06) |
+| Download CAD | ✅ | STLs em `cad/A_make3d_293133/`; dimensionamento re-rodado com geometria medida |
+| **CAD (Blender)** | ⏳ **EM ABERTO** | **Prazo: 13/06** — ver Fase 3 acima para passo a passo |
+| Envio impressão externa | ⏳ Pendente | Confirmar fornecedor até 13/06 |
+| Retirada + inspeção | ⏳ Pendente | 16–17/06 (estimativa) |
+| Montagem | ⏳ Pendente | 19/06 |
+| Validação (ADM + carga + fotos) | ⏳ Pendente | 20/06 → dispara MINERVA Missão 2 |
+| Relatório técnico completo | ⏳ Pendente | MINERVA Missão 2 (pós-validação) + seção 4 (pós-CAD) |
+| Slides + ensaio | ⏳ Pendente | 21/06 |
+| **APRESENTAÇÃO FORMAL** | ⏳ | **22/06** |
