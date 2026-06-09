@@ -181,3 +181,9 @@ Responder com:
 
 > Recomendação técnica: **A como base principal** (score 4,2, single-axis direto, CAD editável)
 > com elementos de D se o CAD for editável (material nativo PETG+TPU sem troca).
+
+---
+
+## ✅ RESULTADO DA VOTAÇÃO (08/06/2026)
+
+**Voto do grupo: A — Make3D / Printables #293133.** Base travada; download e dimensionamento concluídos. Detalhes e ressalvas (sem STEP no pacote; escala ao pé 26–27 cm) em `decisao_design_base.md`.

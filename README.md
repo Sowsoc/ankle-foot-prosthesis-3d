@@ -15,6 +15,7 @@
 | Eixo | Decisão | Razão |
 |---|---|---|
 | Origem do design | **Remixar open-source** | Prazo de 16 dias; partir de base comprovada e justificar mudanças é mais defensável que do zero |
+| **Design-base** | **A — Make3D "Prosthetic Foot Prototype" (Printables #293133)** | Votado pelo grupo em 08/06; maior score (4,2/5), single-axis direto, conector de pylon integrado. Arquivos em `cad/A_make3d_293133/` |
 | Alvo dimensional | **Genérico adulto padrão** | Sem dependência de medir paciente; protótipo demonstrativo |
 | Articulação | **Single-axis (dorsi/plantarflexão)** | Mais simples de modelar e imprimir; clássico e suficiente para "funcional" |
 | Régua de avaliação | **Briefing livre → régua proposta abaixo** | Não há enunciado escrito do professor |

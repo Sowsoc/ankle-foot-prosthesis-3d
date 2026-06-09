@@ -94,3 +94,16 @@ Usar só se A e D forem inviáveis. Exige redesign do mecanismo de articulação
 ---
 
 > *Decisão registrada em 06/06/2026.*
+
+---
+
+## ✅ VEREDITO (08/06/2026)
+
+**Vencedor: A — Make3D / Printables #293133.** Decidido por votação do grupo.
+Razão: maior score (4,2), articulação single-axis direta e conector de pylon já
+integrado — menor trabalho de CAD no prazo apertado.
+
+**Status pós-download:**
+- STLs baixados e versionados em `cad/A_make3d_293133/` (InnerFoot, FootRubber, TopJoint, Insert, RubberCube) + PDF em `refs/A_make3d_293133/`.
+- Keel estrutural = `InnerFoot.stl`. Seção crítica medida (B=43, H=37, L=55 mm) → `dimensionamento.py` re-rodado: **PETG t_parede ≈ 4,3 mm** com FS 2,5.
+- ⚠ **Ressalvas a tratar no CAD:** (1) pacote de A **não traz STEP/F3D** — só STL; remix exige edição de malha (Blender) ou baixar o F3D no Printables. (2) **Escala:** pé do modelo ~21 cm < alvo 26–27 cm → escalar ~1,26× (favorável à estrutura).

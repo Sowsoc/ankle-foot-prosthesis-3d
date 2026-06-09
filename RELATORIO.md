@@ -106,20 +106,23 @@ PLA reforçado com fibra de carbono picada parece mais rígido (E ≈ 3 GPa vs 1
 ### 5.3 Dimensionamento estrutural preliminar
 
 > Script reproduzível: `testes/dimensionamento.py` — gráficos em `testes/dimensionamento_flexao.png` e `testes/dimensionamento_materiais.png`.
-> ⚠️ Geometria da seção marcada `[PLACEHOLDER — REFINAR COM STL]` após escolha e download do design-base.
+> Geometria **medida** no STL do design-base A (Make3D #293133), keel = `InnerFoot.stl`.
 
-**Parâmetros de entrada:**
+**Parâmetros de entrada (medidos no STL de A):**
 - Carga de projeto: P = 1030 N (1,5 × 70 kg × 9,81 m/s²)
-- Momento fletor na seção crítica: M = P × L = 1030 × 60 = 61 800 N·mm (L = 60 mm — placeholder)
-- Seção crítica: B = 40 mm, H = 40 mm (placeholder)
+- Seção crítica medida (região do tornozelo, ~55 mm do calcanhar): B = 43 mm, H = 37 mm
+- Momento fletor na seção crítica: M = P × L = 1030 × 55 ≈ 56 700 N·mm (L = 55 mm medido)
 - Modelo: viga em flexão, seção retangular oca (casca); infill desprezado (conservador — a favor da segurança)
+- **Escala:** keel nativo do modelo (pé ~21 cm) é menor que o alvo 26–27 cm. Os cálculos usam a escala **nativa (pior caso)**; escalar ao alvo (×~1,26) só aumenta a margem (σ ∝ 1/escala², pois o módulo de seção cresce ∝ escala³ enquanto o braço cresce ∝ escala).
 
 **Resultados (FS = 2,5):**
 
 | Material | UTS_xy [MPa] | k_z [-] | σ_adm [MPa] | t_min casca [mm] |
 |---|---|---|---|---|
-| PETG | 45 | 0,50 | 9,0 | 4,6 |
-| PLA-CF | 38 | 0,40 | 6,1 | 10,7 |
+| PETG | 45 | 0,50 | 9,0 | 4,3 |
+| PLA-CF | 38 | 0,40 | 6,1 | 10,1 |
+
+Sanity-check: tensão na seção sólida equivalente = 5,8 MPa — mesma ordem do FEA de literatura (~15 MPa @150% PC [ResearchGate 318989655]), com folga.
 
 **Articulação — eixo M8 8.8 (junta dupla, 2 planos de cisalhamento):**
 - τ atuante = 14,1 MPa → FS real do pino ≈ **34×** — superdimensionado, não é o elo fraco

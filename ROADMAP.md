@@ -188,8 +188,8 @@ Decisão design-base (06/06)
 | Fase | Status | Observação |
 |------|--------|------------|
 | Fundação técnica (biomecânica, requisitos, dimensionamento) | ✅ Concluído | MINERVA - Missão 1 |
-| Decisão design-base | ⏳ Pendente | Matriz pronta - aguarda veredito |
-| Download CAD | ⏳ Pendente | Depende da decisão acima |
-| CAD | ⏳ Pendente | Prazo real: 13/06 |
+| Decisão design-base | ✅ Concluído | **A - Make3D #293133** (voto do grupo, 08/06) |
+| Download CAD | ✅ Concluído | STLs em `cad/A_make3d_293133/`; dimensionamento re-rodado com geometria medida |
+| CAD | ⏳ Pendente | Prazo real: 13/06. ⚠ pacote de A só tem STL (sem STEP/F3D) - remix por edição de malha |
 | Envio impressão externa | ⏳ Pendente | Confirmar fornecedor |
 | Montagem / Validação / Relatório / Slides | ⏳ Pendente | - |

@@ -80,10 +80,22 @@ P          = BW_KG * G * GRF_FACTOR          # carga de projeto [N]  ≈ 1030 N
 FS_BASE  = 2.5        # base (faixa de projeto 2–3)
 FS_RANGE = (2.0, 3.0)
 
-# --- Geometria da seção crítica do keel  [PLACEHOLDER — REFINAR COM STL] ----
-B = 40.0   # largura da seção [mm]                 (REFINAR COM STL)
-H = 40.0   # altura da seção na região crítica [mm](REFINAR COM STL)
-L = 60.0   # braço de momento heel-strike → seção crítica [mm] (REFINAR COM STL)
+# --- Geometria da seção crítica do keel  [MEDIDO no STL — design-base A] -----
+# Design-base TRAVADO: A = Make3D "Prosthetic Foot Prototype" (Printables #293133).
+# Keel estrutural = InnerFoot.stl (cad/A_make3d_293133/). Medições (parse direto
+# da malha binária; varredura de seção a cada 10 mm ao longo do comprimento):
+#   bounding box nativa do keel:  L_total = 111.6 ,  Y = 46.0 ,  Z = 40.2  mm
+#   altura Z ~ 40 mm quase constante ao longo do pé; largura Y afina do
+#   meio-pé (~45) para o antepé (~15). Seção crítica de FLEXÃO sob heel-strike
+#   ~ região do tornozelo (X ~ 50 mm do calcanhar): B(Y) ~ 43 , H(Z) ~ 37 mm.
+# ESCALA: o pé do modelo (FootRubber = 210 mm) é menor que o alvo 26-27 cm.
+#   Escalar p/ alvo exige SCALE ~ 1.26 — e ESCALAR SÓ AJUDA (σ ∝ 1/SCALE²,
+#   pois L cresce ∝ s mas o módulo de seção ∝ s³). Logo SCALE=1.0 (nativo) é o
+#   caso CONSERVADOR/pior: se PETG passa aqui, passa também escalado ao alvo.
+SCALE = 1.0   # 1.0 = escala nativa do STL (pé ~21 cm, pior caso de tensão)
+B = 43.0 * SCALE   # largura da seção crítica [mm]  (medido no InnerFoot.stl)
+H = 37.0 * SCALE   # altura da seção crítica  [mm]  (medido no InnerFoot.stl)
+L = 55.0 * SCALE   # braço heel-strike → tornozelo [mm] (medido: ~50-55 mm)
 
 # --- Materiais candidatos (valores de IMPRESSÃO FDM, plano XY) --------------
 # uts_xy [MPa], E [MPa], k_z [-], comp [MPa] (compressão, p/ bearing do furo)
@@ -137,8 +149,8 @@ print(" DIMENSIONAMENTO ESTRUTURAL PRELIMINAR — prótese pé-tornozelo (FDM)")
 print("=" * 74)
 print(f"  Carga de projeto P      = {P:7.1f} N   "
       f"(= {GRF_FACTOR:.1f}×BW de {BW_KG:.0f} kg) [fonte 1]")
-print(f"  Momento fletor   M = P·L = {M:7.0f} N·mm  (L = {L:.0f} mm)  [PLACEHOLDER]")
-print(f"  Seção crítica (placeholder): B = {B:.0f} mm , H = {H:.0f} mm")
+print(f"  Momento fletor   M = P·L = {M:7.0f} N·mm  (L = {L:.0f} mm)  [MEDIDO, SCALE={SCALE}]")
+print(f"  Seção crítica (medida no InnerFoot.stl): B = {B:.0f} mm , H = {H:.0f} mm")
 print(f"  Fator de segurança base FS = {FS_BASE:.1f}  (faixa {FS_RANGE[0]:.0f}–{FS_RANGE[1]:.0f})")
 
 # Sanity-check: tensão na seção SÓLIDA equivalente vs FEA de referência [6]
@@ -237,7 +249,7 @@ for name in MATERIALS:
         tg = np.linspace(0.1, min(B, h) / 2.0 - 0.01, 400)
         tmins.append(t_min_for(sa, h, B, M, tg))
     ax2.plot(H_grid, tmins, color=colors[name], lw=2, label=name)
-ax2.axvline(H, color="gray", ls=":", lw=1.2, label=f"H placeholder = {H:.0f} mm")
+ax2.axvline(H, color="gray", ls=":", lw=1.2, label=f"H medido = {H:.0f} mm")
 ax2.set_xlabel("Altura H da seção crítica [mm]  (REFINAR COM STL)")
 ax2.set_ylabel("Espessura de parede mínima t_min [mm]")
 ax2.set_title("(b) t_min vs altura da seção  (σ ∝ 1/H²)")
