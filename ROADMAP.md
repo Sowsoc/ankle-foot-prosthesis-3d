@@ -89,11 +89,8 @@ gantt
   │         ├─ parafuso M8 × 60 mm classe 8.8 — 1 un.
   │         └─ porca M8 + 2× arruela M8
   │
-  ├─ [ ] Decisão: pylon (responder antes de editar o Insert)
-  │         ├─ opção A (recomendada): manter Insert custom do design-base
-  │         │    → mais simples, suficiente para demonstração acadêmica
-  │         └─ opção B: substituir por pirâmide ISO 30 mm (4 furos)
-  │              → mais "clínico", mas depende de peça comprada ou re-modelar do zero
+  ├─ [x] ◆ Decisão pylon: **Opção A — manter Insert custom do design-base** (grupo, 09/06)
+  │         → conector simplificado integrado ao modelo; suficiente para demonstração acadêmica
   │
   ├─ [ ] Blender — importar os 5 STLs de cad/A_make3d_293133/:
   │         InnerFoot · TopJoint · FootRubber · RubberCube · Insert
