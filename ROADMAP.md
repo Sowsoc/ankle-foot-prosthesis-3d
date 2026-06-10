@@ -236,8 +236,9 @@ Decisão design-base (06/06)
 | Levantamento da articulação + escala | ✅ | MINERVA Missão 1.5 — ver `cad/A_make3d_293133/MEDIDAS_ARTICULACAO.md` |
 | Decisão design-base | ✅ | **A — Make3D #293133** (voto do grupo, 08/06) |
 | Download CAD | ✅ | STLs em `cad/A_make3d_293133/`; dimensionamento re-rodado com geometria medida |
-| **CAD (Blender)** | ⏳ **EM ABERTO** | **Prazo: 13/06** — ver Fase 3 acima para passo a passo |
-| Envio impressão externa | ⏳ Pendente | Confirmar fornecedor até 13/06 |
+| **CAD / edição de malha** | ✅ | Feito via script (`cad/A_make3d_293133/processar_pecas.py`) em vez do Blender: escala ×1,262 + furo M8. STLs finais em `stl/` |
+| Mini-impressão da junta (teste encaixe M8) | ⏳ **PRÓXIMO** | Imprimir keel + tornozelo, testar M8 + bucha antes de enviar tudo |
+| Envio impressão externa | ⏳ Pendente | STLs prontos + `slicing/ESPECIFICACOES_IMPRESSAO.md`. Confirmar fornecedor até 13/06 |
 | Retirada + inspeção | ⏳ Pendente | 16–17/06 (estimativa) |
 | Montagem | ⏳ Pendente | 19/06 |
 | Validação (ADM + carga + fotos) | ⏳ Pendente | 20/06 → dispara MINERVA Missão 2 |
