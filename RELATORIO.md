@@ -72,10 +72,51 @@ GRF vertical de pico na marcha normal: **1,0–1,5 × PC** [Nilsson & Thorstenss
 | Orientação de impressão | Keel deitado (carga no plano XY) | Anisotropia Z do FDM reduz resistência 30–50% [OSTI 1808415]; orientar para máxima resistência no plano — ver seção 5 |
 
 ## 4. Concepção e projeto (design)
-- [ ] Design-base open-source escolhido + o que foi alterado e **por quê** (defensável na banca).
-- [ ] Mecanismo single-axis: eixo, batentes TPU dorsi/plantar, definição da ADM.
-- [ ] Desenhos/renders do CAD (exportar de `cad/`).
-- [ ] Recurso de projeto: split forefoot/heel (se aplicado).
+
+### 4.1 Estratégia: remix de design open-source
+
+Dado o prazo de 16 dias e a régua de "produto funcional defensável", optou-se por **remixar um design open-source comprovado** em vez de modelar do zero. Partir de uma base existente e justificar cada alteração de engenharia é mais defensável — e mais honesto sobre o esforço real — do que reivindicar um projeto original mal validado.
+
+O design-base foi selecionado por matriz de decisão ponderada (ver `refs/decisao_design_base.md`), com critérios de imprimibilidade FDM, robustez, facilidade de edição, aderência ao mecanismo single-axis e licença. Venceu o **Make3D "Prosthetic Foot Prototype"** (Printables #293133, licença CC BY-NC-SA), com score 4,2/5, por oferecer articulação single-axis direta, conector de pylon integrado e a maior comunidade de remix.
+
+**Limitação assumida:** o autor publicou apenas malhas STL — não há arquivo CAD paramétrico (Fusion 360/STEP) oficial. A adaptação foi feita, portanto, por **edição de malha** (script reproduzível em `cad/A_make3d_293133/processar_pecas.py`, biblioteca `trimesh`), e não por modelagem paramétrica. Isso restringe o tipo de alteração possível (escala e operações booleanas, não re-parametrização de features), mas é suficiente para as três mudanças que o projeto exige.
+
+### 4.2 Componentes do design-base e papéis
+
+| Peça (STL nativo) | Papel | Material no remix |
+|---|---|---|
+| `InnerFoot` | Keel — quilha estrutural; carrega a flexão do heel-strike | PETG |
+| `TopJoint` | Junta superior do tornozelo; aloja o eixo de pivô | PETG |
+| `FootRubber` | Sola / antepé flexível | TPU 95A |
+| `RubberCube` | Batente elástico (define a ADM e amortece) | TPU 95A |
+| `Insert` | Conector proximal ao pylon | PETG |
+
+> **Escopo:** este trabalho desenvolve o **módulo pé-tornozelo** de uma prótese **transtibial** modular. O encaixe (cartucho moldado ao coto, paciente-específico) e o pylon (tubo padronizado) são componentes *upstream* fora do escopo — representados apenas em diagrama. O `Insert` é a interface física com o pylon.
+
+### 4.3 Alterações de engenharia (o que mudou e por quê)
+
+Três modificações sobre o design-base, todas defensáveis:
+
+**1. Escala ×1,262 do casco (pé ~21 cm → 26-27 cm).**
+O modelo nativo tem pé de 209,9 mm (≈ BR 33), abaixo do usuário de projeto (adulto, pé 26-27 cm, BR 40-41). Aplicou-se escala uniforme de 1,262 às peças do casco (keel, sola, conector, batente). O `TopJoint` foi **mantido em escala nativa** (ver alteração 2). A escala, além de atender ao requisito dimensional, **reduz a tensão estrutural**: como σ_flexão ∝ (P·L)/(B·H²), escalar todas as dimensões por *s* faz σ variar com 1/*s²* — escalar para o alvo melhora a margem em ~37 % (ver seção 5 e `testes/dimensionamento.py`).
+
+**2. Normalização do eixo da articulação para M8.**
+O design nativo usa dois diâmetros distintos no mesmo eixo de pivô: furo Ø4,8 mm (≈ passagem de M5) no keel e bore Ø10,0 mm no `TopJoint`. Nenhum corresponde ao eixo M8 8.8 dimensionado na seção 5. A solução:
+- **Keel:** furo aberto de Ø4,8 → **Ø8,4 mm** (folga de M8), via operação booleana concêntrica ao eixo nativo.
+- **TopJoint mantido nativo:** o bore Ø10,0 mm casa **exatamente** com uma **bucha de nylon comercial 10×8** (OD 10 / ID 8). Manter o `TopJoint` sem escala preserva esse encaixe de prateleira — escalá-lo levaria o bore a Ø12,7 mm e exigiria ferragem fora de padrão. A bucha funciona como mancal do parafuso M8, eliminando o contato direto aço-plástico (o esmagamento do furo no plástico, *bearing*, é o elo estrutural mais fraco da junta — seção 5).
+
+**3. Substituição dos elementos elásticos por TPU 95A impresso.**
+O design original previa Filaflex/mola para os elementos compressíveis. No remix, o batente (`RubberCube`, envelope 22,85 × 19,04 × 28 mm) é reproduzido em **TPU 95A**, dispensando peça comprada. A dureza Shore 95A não é cosmética: é o parâmetro que define a rigidez do batente e, com ela, a amplitude de movimento — batente anterior limita a dorsiflexão (10-15°), posterior limita a plantarflexão (15-20°).
+
+### 4.4 Mecanismo single-axis resultante
+
+A articulação final é um **eixo único** (parafuso M8 classe 8.8) atravessando o keel (furo Ø8,4) e a junta superior, apoiado em bucha de nylon 10×8 no bore do `TopJoint`. O movimento de dorsi/plantarflexão ocorre em torno desse eixo no plano sagital; os batentes de TPU 95A definem os limites angulares e absorvem energia. É a escolha mínima viável que confere mobilidade real de tornozelo sem a complexidade de sistemas multi-eixo ou ESAR (energy-storing-and-return em carbono), inviáveis no prazo e custo (comparação SACH × single-axis na seção 2.3).
+
+**Ferragem de montagem:** 1× parafuso M8 × 60 mm cl. 8.8 (eixo), 2× bucha nylon 10×8 (mancal), 1× porca M8 autotravante + arruelas de nylon (reduzem atrito entre faces).
+
+### 4.5 Arquivos gerados
+
+STLs finais nomeados por peça em `stl/` (`keel_petg`, `tornozelo_superior_petg`, `sola_tpu`, `conector_pylon_petg`, `batente_tpu`), parâmetros de fabricação em `slicing/ESPECIFICACOES_IMPRESSAO.md`, e preview em `stl/preview_pecas.png`. *(Renders/fotos finais do CAD a inserir aqui.)*
 
 ## 5. Materiais e fabricação
 
