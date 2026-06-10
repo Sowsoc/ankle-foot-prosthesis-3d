@@ -8,9 +8,29 @@
 - [ ] 1 parágrafo: o que é, decisão single-axis, material, custo, principal resultado de validação.
 
 ## 1. Introdução
-- [ ] Problema: custo/acesso de próteses de pé-tornozelo (citar faixa US$ 5k–50k).
-- [ ] Objetivo do trabalho e escopo (protótipo demonstrativo, não clínico).
-- [ ] Distinção prótese × órtese (você já domina isso do estudo de órteses) — deixar claro que é prótese.
+
+### 1.1 Problema
+
+A amputação de membro inferior impõe ao indivíduo a dependência de uma prótese para restaurar a marcha. O componente pé-tornozelo é determinante para a qualidade dessa marcha — é ele que faz o contato com o solo, absorve o impacto do heel-strike e devolve energia no push-off. Próteses de pé-tornozelo comerciais funcionais, contudo, custam tipicamente de **US$ 5.000 a US$ 50.000** [MDPI Machines 10(6):413], valor proibitivo em contextos de baixa renda e sistemas públicos de saúde sobrecarregados. O resultado é um déficit global de acesso: a OMS estima que apenas uma fração das pessoas que necessitam de próteses tem acesso a elas.
+
+A manufatura aditiva (impressão 3D FDM) abriu uma via para reduzir radicalmente esse custo. Designs open-source de pés protéticos imprimíveis relatam custo de material em torno de **4 % do equivalente comercial** [Appropedia; MDPI Machines 10(6):413], ao preço de menor validação estrutural e durabilidade. O desafio de engenharia é claro: entregar mobilidade de tornozelo e resistência estrutural suficientes com filamento de baixo custo e um processo (FDM) intrinsecamente anisotrópico.
+
+### 1.2 Distinção prótese × órtese
+
+Convém fixar o termo, dado que a disciplina trata dos dois dispositivos. **Órtese** é um dispositivo que *assiste ou corrige* um segmento corporal existente (ex.: uma AFO — ankle-foot orthosis — que apoia um tornozelo fraco). **Prótese** *substitui* um segmento ausente. Este trabalho é uma **prótese**: substitui o pé-tornozelo de um amputado, não auxilia um membro presente.
+
+### 1.3 Objetivo e escopo
+
+O objetivo é projetar, fabricar e validar um **protótipo funcional de pé-tornozelo protético articulado**, impresso em 3D (FDM) a baixo custo, com mobilidade real de tornozelo (mecanismo single-axis), partindo do remix de um design open-source e justificando cada decisão de engenharia.
+
+**Escopo e fronteiras:**
+- Trata-se do **módulo pé-tornozelo** de uma prótese **transtibial** (abaixo do joelho) modular. O encaixe (cartucho moldado ao coto, paciente-específico) e o pylon (tubo padronizado) são componentes *upstream* fora do escopo — o projeto entrega a peça que se conecta ao pylon.
+- Usuário de projeto genérico: adulto ~70 kg, pé 26-27 cm (BR 40-41), **marcha em superfície plana**. Corrida e terreno irregular estão fora do escopo.
+- **Dispositivo de demonstração acadêmica — não clínico.** Nenhum protótipo deste trabalho deve receber carga corporal real sem validação mecânica formal (ensaio de fadiga/ciclagem) e avaliação de protético certificado. A validação aqui é qualitativa/demonstrativa (amplitude de movimento e teste de carga estática), não uma certificação de uso.
+
+### 1.4 Organização do relatório
+
+A seção 2 fundamenta a biomecânica do tornozelo na marcha e as cargas de projeto; a seção 3 fecha os requisitos de engenharia; a seção 4 descreve a concepção e as alterações sobre o design-base; a seção 5 trata de materiais, dimensionamento estrutural e fabricação; as seções 6 a 8 apresentam a validação, o custo e a discussão; a seção 9 conclui.
 
 ## 2. Fundamentação biomecânica
 
